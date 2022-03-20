@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 void main() {
-  runApp(Programim());
+  runApp(const Programim());
 }
 
 class Programim extends StatelessWidget {
+  const Programim({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,13 +16,13 @@ class Programim extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AnaSayfa(title: 'Youtube Oynatıcı'),
+      home: const AnaSayfa(title: 'Youtube Oynatıcı'),
     );
   }
 }
 
 class AnaSayfa extends StatefulWidget {
-  AnaSayfa({Key? key, required this.title}) : super(key: key);
+  const AnaSayfa({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -29,10 +31,10 @@ class AnaSayfa extends StatefulWidget {
 }
 
 class _AnaSayfaDurum extends State<AnaSayfa> {
-  YoutubePlayerController _controller = YoutubePlayerController(
+  final YoutubePlayerController _controller = YoutubePlayerController(
       initialVideoId: 'TD9hkjlPICE', // id youtube video
-      flags: YoutubePlayerFlags(
-        autoPlay: true,
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
         mute: false,
       ));
 
@@ -51,7 +53,7 @@ class _AnaSayfaDurum extends State<AnaSayfa> {
             Container(
               height: 30,
               width: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
                     Colors.cyan,
@@ -65,21 +67,20 @@ class _AnaSayfaDurum extends State<AnaSayfa> {
                     bottomRight: Radius.circular(10)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
-                    //spreadRadius: 5,
+                    color: Colors.black,
                     blurRadius: 5,
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                 ],
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Youtube video',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             YoutubePlayer(
@@ -87,17 +88,17 @@ class _AnaSayfaDurum extends State<AnaSayfa> {
               showVideoProgressIndicator: true,
               progressIndicatorColor: Colors.blueGrey,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             InkWell(
               onTap: () {
-                _showDialog();
+                pencereAc();
               },
               child: Container(
                 height: 70,
                 width: 250,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.pink,
@@ -111,15 +112,14 @@ class _AnaSayfaDurum extends State<AnaSayfa> {
                       bottomRight: Radius.circular(10)),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black12,
-                      //spreadRadius: 5,
+                      color: Colors.black,
                       blurRadius: 5,
                       offset: Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
                       "90 lar Türkçe Pop videosunu izlemek için tıkla!",
@@ -136,7 +136,7 @@ class _AnaSayfaDurum extends State<AnaSayfa> {
     );
   }
 
-  _showDialog() {
+  pencereAc() {
     showDialog(
       context: context,
       barrierDismissible: true, //sadece butonlara basınca ekrandan çıkıyor
@@ -145,7 +145,7 @@ class _AnaSayfaDurum extends State<AnaSayfa> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           backgroundColor: Colors.greenAccent,
-          title: Text(
+          title: const Text(
             "Youtube Player",
             textAlign: TextAlign.center,
           ),
